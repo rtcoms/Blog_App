@@ -1,0 +1,77 @@
+#######################################################################################################
+Project Location:
+=================
+
+for localhost : cd /Library/WebServer/Documents
+for localhost/~mohit/Blog_App : cd /Users/mohit/Sites/Blog_App
+
+#######################################################################################################
+Database schema :
+=================
+
+Database scheme for blog application :
+
+User can have many posts , post will have only one user
+Category can have many posts, post will be in only single category
+Post can have many comments, comment will be corresponding to only one post
+
+#######################################################################################################
+
+Connecting to sqlite database from PHP application using PDO :
+==============================================================
+
+try {
+  $db = new PDO("sqlite:/Users/mohit/Sites/blog.db");
+}catch( PDOException $exception ){
+  die($exception->getMessage());
+}
+#######################################################################################################
+To execute query in shell :
+===========================
+ex.
+sqlite3 blog.db "create table users (username text primary key, password text)";
+#######################################################################################################
+
+Creating tables :
+=================
+
+users table ;
+------------------
+create table users (username text primary key, password text); - done
+
+test data :
+INSERT INTO users VALUES ('rohit', 'rohit');
+INSERT INTO users VALUES ('rai', 'rai');
+INSERT INTO users VALUES ('rex', 'rex');
+
+posts table:
+-----------------
+CREATE TABLE posts (post_id integer PRIMARY KEY NOT NULL, post_title text NOT NULL UNIQUE, post_content text NOT NULL, foreign_categoryname text NOT NULL, foreign_username text NOT NULL); - done
+
+test data :
+INSERT INTO posts VALUES ('1', 'First post overall and first post on javascript', 'this is the first post in database and it is related to javascript and belongs to same category', 'Javascript', 'rohit'  )
+
+INSERT INTO posts VALUES ('2', 'secon overall and first post on rails', 'this is the second post in database and it is related to rails and belongs to same category', 'Ruby on Rails', 'rai'  )
+
+INSERT INTO posts VALUES ('3', 'First post overall and second post on javascript', 'this is the third post in database and it is related to javascript and belongs to same category', 'Javascript', 'rohit'  )
+
+categories table :
+------------------
+CREATE TABLE categories (categoryname text PRIMARY KEY NOT NULL); -done
+
+tets data :
+INSERT INTO categories VALUES ('Javascript');
+INSERT INTO categories VALUES ('Ruby on Rails');
+INSERT INTO categories VALUES ('Ruby programming language');
+INSERT INTO categories VALUES ('MySQL database');
+INSERT INTO categories VALUES ('Git Vaersion control system');
+
+comments table :
+-------------------
+CREATE TABLE comments (comment_id integer PRIMARY KEY NOT NULL, comment_content text NOT NULL, comment_by_username text NOT NULL, foreign_post_id integer NOT NULL ); 
+
+INSERT INTO comments VALUES ('1', 'first comment on first post of javascript', 'dfgrty', '1')
+INSERT INTO comments VALUES ('2', 'second comment on first post of javascript', 'dfgr', '1')
+INSERT INTO comments VALUES ('3', 'first comment on second post of javascript', 'dfgrty', '3')
+
+#######################################################################################################
