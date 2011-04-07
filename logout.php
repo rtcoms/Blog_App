@@ -14,7 +14,7 @@
 	
 	if(!$_SESSION['username'])
 	{
-		header("Location: /~mohit/Blog_App/index.php?uname1=$uname");
+		header("Location: index.php?uname1=$uname");
 	}
 }
 ?>

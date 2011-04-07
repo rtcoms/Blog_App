@@ -9,15 +9,15 @@ $usernameUsed = checkUsername($thename);
 
 if($userPasswordExist != 0)
 {
-	$errorMessage = "1";
-	$errorMessage = 'Existing user? . Please go to the login page';
+	//$errorMessage = "1";
+	//$errorMessage = 'Existing user? . Please go to the login page';
 	header('Location:/~mohit/Blog_App/index.php');
 }
 else if($usernameUsed != 0)
 {
-	$errorMessage = "2";
-	$erorMessage = 'Please choose another user id. This userid is already used.';
-	header('Location:/~mohit/Blog_App/signup.php');
+	//$errorMessage = "2";
+	//$erorMessage = 'Please choose another user id. This userid is already used.';
+	redirect('signup.php');
 }
 else
 {
@@ -25,13 +25,13 @@ else
 	$userRegistered = checkUsernameAndPassword($thename, $thepass);
 	if($userRegistered == 0)
 	{
-		$errorMessage = "3";
-		header('Location:/~mohit/Blog_App/signup.php');	
+		//$errorMessage = "3";
+		redirect('signup.php');	
 	}
 	else
 	{	
-		$errorMessage = "4";
-		header('Location:/~mohit/Blog_App/index.php');
+		//$errorMessage = "4";
+		redirect('index.php');
 	}
 }
 ?>

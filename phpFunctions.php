@@ -22,6 +22,12 @@ function disconnectToDatabase()
 	return $db1;
 };
 //////////////////////////////////////////////////////////////////////////////////////////////////
+function redirect($url)
+{
+        header("Location: $url");
+        exit();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////
 function checkUsername($uname)
 {
 	$db=connectToDatabase();
@@ -49,19 +55,19 @@ function selectAllPostsOfUser($uname)
 	$result=$db->query("SELECT post_id, post_title FROM posts WHERE foreign_username = '$uname'");
 	// loop over rows of database table
 	echo '<table>';
-	while($row=$result->fetch(SQLITE_ASSOC)){
+	while($postDetails=$result->fetch(SQLITE_ASSOC)){
 
 	    // fetch current row
 		echo '<tr>';
-	    	echo '<td>';echo '<b>'.$row[1].'</b>';echo '</td>';
+	    	echo '<td>';
+				echo '<h2>'.'<a href=view_post.php?postid='.$postDetails[0].'>'.$postDetails[1].'</a>'.'</h2>';
+			echo '</td>';
+			
 			echo '<td>';
-				echo '<a href=view_post.php?postid='.$row[0].'><input type=\'button\' value=\'View\'></a>';
+				echo '<h2>'.'<a href=editpost_form.php?postid='.$postDetails[0].'><input type=\'button\' value=\'Edit\'></a>'.'</h2>';
 			echo '</td>';
 			echo '<td>';
-				echo '<a href=edit_post.php><input type=\'button\' value=\'Edit\'></a>';
-			echo '</td>';
-			echo '<td>';
-				echo '<a href=delete_post.php><input type=\'button\' value=\'Delete\'></a>';
+				echo '<h2>'.'<a href=delete_post.php?postid='.$postDetails[0].'><input type=\'button\' value=\'Delete\'></a>'.'</h2>';
 			echo '</td>';
 		echo '</tr>';
 
@@ -80,7 +86,7 @@ function createNewUser($newuname, $newpword)
 		$errorMessage='You are successfully registered to phpBlog';
 		
 };
-/////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
 function getPostAuthor($postid)
 {
 	$db=connectToDatabase();	
@@ -89,7 +95,7 @@ function getPostAuthor($postid)
 	$db=disconnectToDatabase();
 	return $result1[0];
 };
-/////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
 function retrievePost($postid)
 {
 	$db=connectToDatabase();	
@@ -99,4 +105,44 @@ function retrievePost($postid)
 	
 	return $postDetails;
 };
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function deletePost($postid1)
+{
+	$db=connectToDatabase();	
+	//$query = "DELETE FROM posts WHERE post_id = '$postid1'";
+	//$query1 = $db->prepare("DELETE FROM posts WHERE post_id = $postid1");
+	//$query1->execute();
+	$db->exec("DELETE FROM posts WHERE post_id = '$postid1'");    
+	$db=disconnectToDatabase();
+	
+	//return $deleteStatus;
+};
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function updatePost($tempid, $temptitle, $tempcontent, $tempcategory)
+{
+	$db=connectToDatabase();
+	//update query	
+	//$query = "UPDATE posts SET post_title='$temptitle', post_content='$tempcontent', post_category='$tempcategory' WHERE post_id='$tempid'";
+	$db->exec("UPDATE posts SET post_title='$temptitle', post_content='$tempcontent', foreign_categoryname='$tempcategory' WHERE post_id='$tempid'");
+	$db=disconnectToDatabase();
+};
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function retrieveCategories()
+{
+	$db=connectToDatabase();	
+	$query = "SELECT * FROM categories";
+	$allCategories = $db->query($query);    
+	$db=disconnectToDatabase();
+	
+	return $allCategories;
+};
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function createPost($temptitle, $tempcontent, $tempcategory, $tempauthor)
+{
+	$db=connectToDatabase();
+	$query = "INSERT INTO posts VALUES (null,'$temptitle', '$tempcontent', '$tempcategory', '$tempauthor')";
+	$db->query($query);
+	$db=disconnectToDatabase();
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

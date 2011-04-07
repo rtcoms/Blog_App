@@ -7,7 +7,7 @@ $result = checkUsernameAndPassword($_POST["username"], $_POST["password"]);
 if($result == 0) //no user exist
 {
 	//redirect to login page
-	header('Location:/~mohit/Blog_App/index.php');
+	redirect('index.php');
 }
 else //user exist
 {
@@ -17,7 +17,7 @@ else //user exist
 	$_SESSION['username'] = $_POST["username"];
 	$_SESSION['password'] = $_POST["password"];	
 	//redirect to main page
-	header('Location:/~mohit/Blog_App/main.php');
+	redirect('main.php');
 }
 
 ?>

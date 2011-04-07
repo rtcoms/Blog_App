@@ -17,8 +17,6 @@
 				<h3>My Blog.</h3>
 			</div>
 			<div id="caption">
-			
-				<h1>This is PHP Exercise Blog web application.</h1>
 				<?php
 					if($_GET['uname1'] != '')
 					{

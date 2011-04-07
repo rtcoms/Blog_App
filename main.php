@@ -3,7 +3,7 @@ session_start();
 include ("phpFunctions.php");
 if(!$_SESSION['username'])
 {
-	header('Location: /~mohit/Blog_App/index.php');
+	redirect('index.php');
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -33,10 +33,9 @@ if($_SESSION['username'])
 		echo '<div id="caption">';
 			echo "welcome "."<b>".$_SESSION['username']."</b>";	
 			echo '<br />';
-			echo '<a href="newpost.php">Create new post</a>';
+			echo '<a href="createpost_form.php">Create new post</a>';
 			echo '<br />';
 			echo '<a href="logout.php">Log out</a>';
-			echo '<h1>this is page for login validation.</h1>';
 		echo '</div>';
 	
 		echo '<div id="text">';

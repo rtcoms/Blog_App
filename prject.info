@@ -55,6 +55,9 @@ INSERT INTO posts VALUES ('2', 'secon overall and first post on rails', 'this is
 
 INSERT INTO posts VALUES ('3', 'First post overall and second post on javascript', 'this is the third post in database and it is related to javascript and belongs to same category', 'Javascript', 'rohit'  )
 
+INSERT INTO posts VALUES ('4', 'Fourth post overall and first post on javascript', 'this is the 4th post in database and it is related to javascript and belongs to same category', 'Javascript', 'rohit') 
+
+INSERT INTO posts VALUES ('5', 'Fifth post overall and second post on javascript', 'this is the 5th post in database and it is related to javascript and belongs to same category', 'Javascript', 'rohit')
 categories table :
 ------------------
 CREATE TABLE categories (categoryname text PRIMARY KEY NOT NULL); -done
