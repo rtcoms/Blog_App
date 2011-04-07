@@ -14,7 +14,7 @@
 </head>
 <body>
 	
-			<div id="outline">
+			<div id="outline" >
 				<div id="title">
 					<h3>My Blog.</h3>
 				</div>
@@ -46,17 +46,16 @@
 					?>
 				</div>
 
-				<div id="text">
+				<div id="text" class="clearfix">
 					<?php
 
 						$postDetails = retrievePost($_GET['postid']);
 
 						echo '<h2>'.$postDetails[1].'</h2>';echo '<br />';
-						echo '<pre>'.$postDetails[2].'</pre>';echo '<br />';echo '<br />';
+						echo '<pre>';echo nl2br(stripslashes($postDetails[2]));echo '</pre>';echo '<br />';echo '<br />';
 						echo '<pre><b>Category :</b>'.$postDetails[3].'</pre>';echo '<br />';
 						echo '<br />';echo '<br />';echo '<br />';
-						echo 'Written by :  '.'<b>'.$postDetails[4].'</b>';
-						
+						echo 'Written by :  '.'<b>'.$postDetails[4].'</b>';		
 						
 						if($_SESSION['username'] == $postDetails[4])
 						{
@@ -73,8 +72,47 @@
 							echo '</tr>';
 
 							echo '</table>';
-						}
-					?>
+							
+							echo '<br />';
+							echo '<b>Comments for the above posts :</b>';
+							}
+							?>
+							<br />
+							<br />
+							<div id="comments" class="wordwrap">
+							<?php
+							$postComments = retrieveComments($_GET['postid']);
+							while($commentDetails=$postComments->fetch(SQLITE_BOTH))
+							{
+									echo '<pre>'.$commentDetails[1].'</pre>';
+									echo '<br />';
+									echo 'by:<b>'.$commentDetails[2].'</b>';
+									echo '<hr />';
+							}	
+							
+						
+						?>
+						<form action="submit_comment.php" method="post">
+							<?php
+								echo '<input type=\'hidden\' name=\'commentpostid\' value=\''.$_GET['postid'].'\'</input>';
+							?>
+							<table>
+								<tr>
+									<td colspan="2">Your Comment :</td>
+								</tr>
+								<tr>
+									<td colspan="2"><textarea cols="40" rows="10" name="commentcontent"></textarea></td>
+								</tr>
+								<tr>
+									<td>Your name :</td>
+									<td><input tupe="textbox" name="commentbyusername" size="39"></td>
+								</tr>
+								<tr>
+									<td colspan="2"><input type="Submit" action="submit" value="submit"></td>
+								</tr>
+							</table>
+						</form>
+					</div>
 				</div>
 
 			</div>

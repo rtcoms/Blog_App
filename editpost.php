@@ -20,10 +20,6 @@
 		}
 		updatePost($postid, $postTitle, $postContent, $postCategory);
 		
-			redirect("view_post.php?postid=$postid");
-	
-		
-			
-		
+			redirect("view_post.php?postid=$postid");	
 	}
 ?>

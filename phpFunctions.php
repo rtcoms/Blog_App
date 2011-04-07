@@ -120,11 +120,21 @@ function deletePost($postid1)
 //////////////////////////////////////////////////////////////////////////////////////////////////
 function updatePost($tempid, $temptitle, $tempcontent, $tempcategory)
 {
-	$db=connectToDatabase();
+	//USING PDO
+	//$db=connectToDatabase();--valid
 	//update query	
 	//$query = "UPDATE posts SET post_title='$temptitle', post_content='$tempcontent', post_category='$tempcategory' WHERE post_id='$tempid'";
-	$db->exec("UPDATE posts SET post_title='$temptitle', post_content='$tempcontent', foreign_categoryname='$tempcategory' WHERE post_id='$tempid'");
-	$db=disconnectToDatabase();
+	//$db->exec("UPDATE posts SET post_title='$temptitle', post_content='$tempcontent', foreign_categoryname='$tempcategory' WHERE post_id='$tempid'")--valid;
+	//$db=disconnectToDatabase()--valid;
+	
+	//Using SQLite3
+	$dbhandle = new SQLite3("blog.db", $mode=0666, $sqliteerror);
+	$tempcontent1 = $dbhandle->escapeString($tempcontent) or die($sqliteerror);
+	$temptitle1 = $dbhandle->escapeString($temptitle) or die($sqliteerror);
+	
+	$dbhandle->exec("UPDATE posts SET post_title='$temptitle1', post_content='$tempcontent1', foreign_categoryname='$tempcategory' WHERE post_id='$tempid'");
+	
+	$dbhandle->close();
 };
 //////////////////////////////////////////////////////////////////////////////////////////////////
 function retrieveCategories()
@@ -139,10 +149,48 @@ function retrieveCategories()
 //////////////////////////////////////////////////////////////////////////////////////////////////
 function createPost($temptitle, $tempcontent, $tempcategory, $tempauthor)
 {
-	$db=connectToDatabase();
-	$query = "INSERT INTO posts VALUES (null,'$temptitle', '$tempcontent', '$tempcategory', '$tempauthor')";
-	$db->query($query);
+	
+	//$db=connectToDatabase();
+	$dbhandle = new SQLite3("blog.db", $mode=0666, $sqliteerror);
+	$tempcontent1 = $dbhandle->escapeString($tempcontent) or die($sqliteerror);
+	$temptitle1 = $dbhandle->escapeString($temptitle) or die($sqliteerror);
+	
+	
+	//$query = "INSERT INTO posts VALUES (null,'$temptitle', '$tempcontent', '$tempcategory', '$tempauthor')";
+	//$db->query($query);
+	
+	$stmt = $dbhandle->prepare("INSERT INTO posts(post_id, post_title, post_content, foreign_categoryname, foreign_username) VALUES (null,'$temptitle1','$tempcontent1','$tempcategory','$tempauthor')") or die($sqliteerror);
+	
+	
+	$stmt->execute() or die($sqliteerror);
+	$dbhandle->close();
+	//$db=disconnectToDatabase();
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function retrieveComments($temppostid)
+{
+	$db=connectToDatabase();	
+	$query = "SELECT * FROM comments WHERE foreign_post_id='$temppostid'";
+	$allComments = $db->query($query);    
 	$db=disconnectToDatabase();
+	
+	return $allComments;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+function submitComment($tempcommentcontent, $tempcommentbyusername, $tempcommentpostid)
+{
+	
+	
+	$dbhandle = new SQLite3("blog.db", $mode=0666, $sqliteerror);
+	$tempcommentcontent1 = $dbhandle->escapeString($tempcommentcontent) or die($sqliteerror);
+	$tempcommentbyusername1 = $dbhandle->escapeString($tempcommentbyusername) or die($sqliteerror);
+	
+	$stmt = $dbhandle->prepare("INSERT INTO comments(comment_id, comment_content, comment_by_username, foreign_post_id) VALUES (null,'$tempcommentcontent1','$tempcommentbyusername1','$tempcommentpostid')") or die($sqliteerror);
+	
+	
+	$stmt->execute() or die($sqliteerror);
+	$dbhandle->close();
+	
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

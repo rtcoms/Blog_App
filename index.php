@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="design.css" />
 	</head>
 	<body>
+		
 		<div id="outline">
 			<div id="title">
 				<h3>My Blog.</h3>

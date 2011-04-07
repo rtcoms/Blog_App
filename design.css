@@ -2,6 +2,7 @@
 #caption { width: 200px; left: 48px; top: 318px; position: absolute; visibility: visible; }
 #text { left: 200px; top: 318px; position: absolute; width: 760px; visibility: visible; }
 #title { width: 960px; top: 50px; position: absolute; visibility: visible;  }
+#comments { width: 400px;  visibility: visible;  }
 p { color: #666; font-size: 16px; font-family: "Lucida Grande", Arial, sans-serif; font-weight: normal; margin-top: 0; }
 h1 { color: #778fbd; font-size: 20px; font-family: "Lucida Grande", Arial, sans-serif; font-weight: 500; line-height: 32px; margin-top: 4px; }
 h2 { color: #778fbd; font-size: 18px; font-family: "Lucida Grande", Arial, sans-serif; font-weight: normal; margin: 0.83em 0 0; }
@@ -20,3 +21,11 @@ div{
 
 pre {font-size: 13px;
 	margin: 0em 0em 0em 0em;}
+.wordwrap { 
+	   white-space: pre-wrap;      /* CSS3 */   
+	   white-space: -moz-pre-wrap; /* Firefox */    
+	   white-space: -pre-wrap;     /* Opera <7 */   
+	   white-space: -o-pre-wrap;   /* Opera 7 */    
+}
+
+
