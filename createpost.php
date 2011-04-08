@@ -15,8 +15,15 @@
 		$postCategory = $_POST['postcategory']; 
 		$postAuthor = $_SESSION['username'];
 		
-		createPost($postTitle, $postContent, $postCategory, $postAuthor);
 		
+if(checkEmptyAndNullString($postTitle) || checkEmptyAndNullString($postContent) || checkEmptyAndNullString($postCategory) )
+		{
+			redirect("createpost_form.php");	
+		}
+		else
+		{
+			createPost($postTitle, $postContent, $postCategory, $postAuthor);
 			redirect("main.php");	
+		}
 	}
 ?>

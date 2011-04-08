@@ -74,11 +74,12 @@
 							echo '</table>';
 							
 							echo '<br />';
-							echo '<b>Comments for the above posts :</b>';
+							
 							}
 							?>
 							<br />
 							<br />
+							<b>Comments for the above posts :</b>
 							<div id="comments" class="wordwrap">
 							<?php
 							$postComments = retrieveComments($_GET['postid']);
@@ -101,7 +102,7 @@
 									<td colspan="2">Your Comment :</td>
 								</tr>
 								<tr>
-									<td colspan="2"><textarea cols="40" rows="10" name="commentcontent"></textarea></td>
+									<td colspan="2"><textarea cols="40" rows="10" name="commentcontent" wrap="hard"></textarea></td>
 								</tr>
 								<tr>
 									<td>Your name :</td>

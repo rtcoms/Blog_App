@@ -5,7 +5,7 @@
 	
 	if(!$_SESSION['username'])
 	{
-		redirect("/~mohit/Blog_App/index.php");
+		redirect("index.php");
 	}
 	else
 	{
@@ -14,12 +14,18 @@
 		$postContent = $_POST['postcontent'];
 		$postCategory = $_POST['postcategory']; 
 		$postAuthor = $_SESSION['username'];
-		if(!$postid) 
-		{
-			redirect("error.html");
-		}
-		updatePost($postid, $postTitle, $postContent, $postCategory);
 		
-			redirect("view_post.php?postid=$postid");	
+		if(checkEmptyAndNullString($postTitle) || checkEmptyAndNullString($postContent) || checkEmptyAndNullString($postCategory) )
+				{
+					redirect("editpost_form.php?postid=$postid");	
+				}
+				else
+				{
+					updatePost($postid, $postTitle, $postContent, $postCategory);
+					redirect("view_post.php?postid=$postid");	
+				}
+		
+		
+			
 	}
 ?>

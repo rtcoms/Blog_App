@@ -5,9 +5,14 @@
 		$commentContent = $_POST['commentcontent'];
 		$commentByUsername = $_POST['commentbyusername'];
 				
-		submitComment($commentContent, $commentByUsername, $commentPost);
-		
-		redirect("view_post.php?postid=$commentPost");	
-	
+		if(checkEmptyAndNullString($commentContent) || checkEmptyAndNullString($commentByUsername))
+		{
+			redirect("main.php");	
+		}
+		else
+		{
+			submitComment($commentContent, $commentByUsername, $commentPost);
+			redirect("view_post.php?postid=$commentPost");	
+		}
+			
 ?>
-
