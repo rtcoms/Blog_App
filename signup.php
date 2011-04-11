@@ -3,54 +3,65 @@ session_start();
 include ("phpFunctions.php");
 if($_SESSION['username'])
 {
-	redirect('index.php');
+	redirect('main.php');
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>phpBlog</title>
 
-	<head>
-		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-		<meta name="generator" content="Adobe GoLive" />
-		<title>PHP Blogging application</title>
-		<link rel="stylesheet" type="text/css" href="design.css" />
-</head>		
-<body>
-	<div id="outline">
-		<div id="title">
-			<h3>PhpBlog.</h3>
-		</div>
-		
-		<div id="caption">
-			<h5>Welcome Guest</h5>
-			<?php
-			echo $errorMessage;
-			?>
-		</div>
-		
-		<div id="text">
-			<h1>Join us! Create and share exciting blogposts</h1>
+    <!-- Framework CSS -->
+    <link rel="stylesheet" href="blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]><link rel="stylesheet" href="../blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+
+    <!-- Import fancy-type plugin for the sample page. -->
+    <link rel="stylesheet" href="blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+  </head>
+  <body>
+    <div class="container">
+      <h1>My Blog.</h1>
+      <h2 class="alt">This is a blog created in PHP/SQLite3.</h2>
+      <hr>
+
+      <div class="span-24 ">
+        this is place for status messages
+      </div>
+      <br />
+	  <br />
+
+      
+	   <div class="span-5">
+			<br />
+	       Welcome  <h5>Guest</h5>
+	   </div>
+	
+      <div class="span-18 last border-left">
+			<h2>Join us! Create and share exciting blogposts</h2>
 			<br /><br />
 			<form action="register_user.php" method="post">
 				<table>
 					<tr>
-					<td>Username :</td> <td><input type="text" name="newusername"></input></td>
+					<td class="large tdbgcolor" >Username :</td> <td class="tdbgcolor"><input type="text" name="newusername"></input></td>
 					</tr>
 					<tr>
-					<td>Password  : </td><td><input type="password" name="newpassword"></input></td>
+					<td class="large tdbgcolor">Password  : </td><td class="tdbgcolor"><input type="password" name="newpassword"></input></td>
 					</tr>
 					<tr>
-					<td>Confirm password  : </td><td><input type="password" name="confpassword"></input></td>
+					<td class="large tdbgcolor">Confirm password  : </td><td class="tdbgcolor"><input type="password" name="confpassword"></input></td>
 					</tr>
-					<tr>
-						<td colspan="2" align='center'><input type="Submit" name="Submit" value="Submit"></td>
+					<tr class="whitetdbg">
+						<td  colspan="2" align='center' class="whitetdbg"><input type="Submit" name="Submit" value="Sign Up"></td>
 					</tr>
 				</table>
 			</form>
-		</div>
-		
-	</div>
-	
-</body>
+      </div>
+
+      <hr>
+    </div>
+  </body>
 </html>

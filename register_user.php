@@ -4,6 +4,7 @@ include ("phpFunctions.php");
 //session_start();
 $thename = $_POST['newusername'];
 $thepass = $_POST['newpassword'];
+$confpass = $_POST['confpassword'];
 $userPasswordExist = checkUsernameAndPassword($thename, $thepass);
 $usernameUsed = checkUsername($thename);
 
@@ -19,7 +20,11 @@ else if($usernameUsed != 0)
 	//$erorMessage = 'Please choose another user id. This userid is already used.';
 	redirect('signup.php');
 }
-else
+else if($thepass !== $confpass)
+{
+	redirect('signup.php');
+}
+else 
 {
 	createNewUser($_POST['newusername'], $_POST['newpassword']);
 	$userRegistered = checkUsernameAndPassword($thename, $thepass);

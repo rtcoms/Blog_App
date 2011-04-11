@@ -1,53 +1,64 @@
-<?php
- include("phpFunctions.php");
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>phpBlog</title>
 
-	<head>
-		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-		<meta name="generator" content="Adobe GoLive" />
-		<title>Sign up for blogging application</title>
-		<link rel="stylesheet" type="text/css" href="design.css" />
-	</head>
-	<body>
+    <!-- Framework CSS -->
+    <link rel="stylesheet" href="blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]><link rel="stylesheet" href="../blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+
+    <!-- Import fancy-type plugin for the sample page. -->
+    <link rel="stylesheet" href="blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+  </head>
+  <body>
+    <div class="container">
+      <h1>My phpBlog.</h1>
+      <h2 class="alt">This is a blog created in PHP/SQLite3.</h2>
+      <hr>
+
+      <div class="span-24 ">
+        this is place for status messages
+      </div>
+      <br />
+	  <br />
+
+      
+	   <div class="span-5">
+			<br />
+	        <h3>Main Menu</h3> 
+	  		<?php
+				if($_GET['uname1'] != '')
+				{
+					echo "Hi "."<b>".$_GET['uname1']."</b>".",<br />"." you are logged out from the blogging application";	
+				}
+				echo "<br />";
+				echo '<a href="signup.php">'.'Sign up'.'</a>';
+				echo  $errorMessage;
+			?>
+	   </div>
+	
+      <div class="span-18 last border-left">
+		<h2>LogIn :</h2>
+        
+		<form action="check_login.php" method="post">
+			<table>
+				<tr>
+				<td class="large" style="background:#e5ecf9;">Username :</td> <td style="background:#e5ecf9;"><input type="text" name="username"></input></td>
+				</tr>
+				<td class="large" >Password  : </td><td><input type="password" name="password"></input></td>
+				<tr>
+					<td colspan="2" align="center"><input type="Submit" name="Submit" value="Submit"></td>
+				</tr>
+			</table>
+		</form>
 		
-		<div id="outline">
-			<div id="title">
-				<h3>My Blog.</h3>
-			</div>
-			<div id="caption">
-				<?php
-					if($_GET['uname1'] != '')
-					{
-						//echo $_SESSION['username'];
-						echo "<b>".$_GET['uname1']."</b>".", you are logged out from the blogging application";	
-					}
-					echo "<br />";
-					echo '<a href="signup.php">'.'Sign up'.'</a>';
-					echo  $errorMessage;
-				?>
-			</div>
-			
-			<div id="text">
-				LoginIn :
-				<form action="check_login.php" method="post">
-					<table>
-						<tr>
-						<td>Username :</td> <td><input type="text" name="username"></input></td>
-						</tr>
-						<td>Password  : </td><td><input type="password" name="password"></input></td>
-						<tr>
-							<td colspan="2"><input type="Submit" name="Submit" value="Submit"></td>
-						</tr>
-					</table>
-				</form>
-				
-			</div>
-			
-		</div>
-		
-	</body>
+      </div>
 
+      <hr>
+    </div>
+  </body>
 </html>

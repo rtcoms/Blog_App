@@ -1,7 +1,3 @@
-<?php
-	include ("phpFunctions.php");
-	checkSessionExist();
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -27,34 +23,18 @@
       <div class="span-24 ">
         this is place for status messages
       </div>
-	
-      <hr>
+      <br />
+	  <br />
 
       
-	   <div class="span-5 ">
+	   <div class="span-5">
 			<br />
 	        <h3>Main Menu</h3>   
-			<?php
-				echo "Hi "."<b>".$_SESSION['username']."</b>,";	
-				echo '<br />';
-				echo "<ul>";
-				echo '<a href="createpost_form.php">Create new post</a>';
-				echo '<br />';
-				echo '<a href="logout.php">Log out</a>';
-				echo "</ul>";
-			?>
 	   </div>
 	
-      <div class="span-18 last border-left">
-		<h2>My Blog.</h2>
-       <?php
-       	echo '<h5>Posts Created by You</h5>';
-		echo '<br />';
-		//echo $_SESSION['username'];
-		selectAllPostsOfUser($_SESSION['username']);
-		//$post  = $allPostsOfUser->fetch();
-		//echo post[2];
-       ?>
+      <div class="span-18 last">
+		<h2>This is title of post.</h2>
+        this
       </div>
 
       <hr>
