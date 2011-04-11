@@ -21,6 +21,25 @@ if(!$_SESSION['username'])
 
     <!-- Import fancy-type plugin for the sample page. -->
     <link rel="stylesheet" href="blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+
+	<!-- Includeing jquery.js-->
+	<script type="text/javascript" src="jquery.js"></script>          
+	 <script type="text/javascript">                                         
+	   // we will add our javascript code here   
+	   $(document).ready(function(){
+			//validating for empty textboxes for username and password	
+			$('#submit').click(function(){
+				
+				if($.trim($('textarea[name="postcontent"]').val()) === '' || $.trim($('input[name="posttitle"]').val()) === '' || $.trim($('select[name="postcategory"]').val()) === '')
+				{
+					alert("All fields are requires");
+				}
+				
+				
+			});
+			     
+		});   
+	 </script>
   </head>
   <body>
     <div class="container">
@@ -101,7 +120,7 @@ if(!$_SESSION['username'])
 				
 				echo '<tr>';
 					echo '<td colspan="2" align="center"  class="large tdbgcolor">';
-						echo '<input type="Submit" action="submit" value="Go">';
+						echo '<input type="Submit" action="submit" value="Go" id="submit">';
 					echo '</td>';
 				echo '</tr>';
 			echo '</table>';

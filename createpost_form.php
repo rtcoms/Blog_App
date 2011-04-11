@@ -29,14 +29,13 @@
 	   $(document).ready(function(){
 			//validating for empty textboxes for username and password	
 			$('#submit').click(function(){
-				var count = 0;
-				$('#createpostform').each(function(index){
-			 		
-						count = count+1;
-					
-				});   
 				
-				alert(count);
+				if($.trim($('textarea[name="postcontent"]').val()) === '' || $.trim($('input[name="posttitle"]').val()) === '' || $.trim($('select[name="postcategory"]').val()) === '')
+				{
+					alert("All fields are requires");
+				}
+				
+				
 			});
 			     
 		});   
