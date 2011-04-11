@@ -21,6 +21,26 @@
 
     <!-- Import fancy-type plugin for the sample page. -->
     <link rel="stylesheet" href="blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+
+	<!-- Includeing jquery.js-->
+	<script type="text/javascript" src="jquery.js"></script>          
+	 <script type="text/javascript">                                         
+	   // we will add our javascript code here   
+	   $(document).ready(function(){
+			//validating for empty textboxes for username and password	
+			$('#submit').click(function(){
+				var count = 0;
+				$('#createpostform').each(function(index){
+			 		
+						count = count+1;
+					
+				});   
+				
+				alert(count);
+			});
+			     
+		});   
+	 </script>
   </head>
   <body>
     <div class="container">
@@ -47,7 +67,7 @@
 	   </div>
 	
       <div class="span-18 last border-left">
-			<form method='post' action='createpost.php'>
+			<form method='post' action='createpost.php' id='createpostform'>
 				<?php
 
 				echo '<table>';
@@ -87,7 +107,7 @@
 
 					echo '<tr>';
 						echo '<td colspan="2" align="center" class="large tdbgcolor">';
-							echo '<input type="Submit" action="submit" value="Go">';
+							echo '<input type="Submit" action="submit" value="Go" id="submit">';
 						echo '</td>';
 					echo '</tr>';
 				echo '</table>';

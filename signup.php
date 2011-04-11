@@ -21,6 +21,26 @@ if($_SESSION['username'])
 
     <!-- Import fancy-type plugin for the sample page. -->
     <link rel="stylesheet" href="blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+
+	<!-- Includeing jquery.js-->
+	<script type="text/javascript" src="jquery.js"></script>          
+	 <script type="text/javascript">                                         
+	   // we will add our javascript code here   
+	   $(document).ready(function(){
+		//validating for empty textboxes for username and password	
+				$('#submit').click(function(){
+				if($.trim($('input[name="newusername"]').val()) === '' || $.trim($('input[name="newpassword"]').val()) === '' || $.trim($('input[name="confpassword"]').val()) === '')
+				{
+			 		alert("Username or password/confirm passsword can't be empty");
+ 				}
+				else($('input[name="newpassword"]').val() !== $('input[name="confpassword"]').val())
+				{
+					alert("password and confirm password should be same");
+				}
+			
+			});                           
+				});   
+	 </script>
   </head>
   <body>
     <div class="container">
@@ -55,7 +75,7 @@ if($_SESSION['username'])
 					<td class="large tdbgcolor">Confirm password  : </td><td class="tdbgcolor"><input type="password" name="confpassword"></input></td>
 					</tr>
 					<tr class="whitetdbg">
-						<td  colspan="2" align='center' class="whitetdbg"><input type="Submit" name="Submit" value="Sign Up"></td>
+						<td  colspan="2" align='center' class="whitetdbg"><input type="Submit" id="submit" value="Sign Up"></td>
 					</tr>
 				</table>
 			</form>

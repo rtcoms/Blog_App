@@ -13,6 +13,21 @@
 
     <!-- Import fancy-type plugin for the sample page. -->
     <link rel="stylesheet" href="blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+
+	<!-- Includeing jquery.js-->
+	<script type="text/javascript" src="jquery.js"></script>          
+	 <script type="text/javascript">                                         
+	   // we will add our javascript code here   
+	   $(document).ready(function(){
+		//validating for empty textboxes for username and password	
+			$('#submit').click(function(){
+			 	if($.trim($('input[name="username"]').val()) === '' || $.trim($('input[name="password"]').val()) === '')
+				{
+					alert("Username or password can't be empty");
+				}
+			});                           
+		});   
+	 </script>
   </head>
   <body>
     <div class="container">
@@ -51,7 +66,7 @@
 				</tr>
 				<td class="large" >Password  : </td><td><input type="password" name="password"></input></td>
 				<tr>
-					<td colspan="2" align="center"><input type="Submit" name="Submit" value="Submit"></td>
+					<td colspan="2" align="center"><input type="submit" id="submit" value="Submit"></td>
 				</tr>
 			</table>
 		</form>

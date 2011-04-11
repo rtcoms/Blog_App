@@ -13,11 +13,14 @@ else //user exist
 {
 	
 	session_register($userParam);
-	session_start();
-	$_SESSION['username'] = $_POST["username"];
-	$_SESSION['password'] = $_POST["password"];	
-	//redirect to main page
-	redirect('main.php');
-}
+		session_start();
+		$_SESSION['username'] = $_POST["username"];
+		$_SESSION['password'] = $_POST["password"];	
+		//redirect to main page
+		redirect('main.php');
+	}
 
 ?>
+<html>
+<head>
+	
