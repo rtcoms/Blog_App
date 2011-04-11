@@ -33,6 +33,7 @@ if(!$_SESSION['username'])
 				if($.trim($('textarea[name="postcontent"]').val()) === '' || $.trim($('input[name="posttitle"]').val()) === '' || $.trim($('select[name="postcategory"]').val()) === '')
 				{
 					alert("All fields are requires");
+					return false;
 				}
 				
 				
@@ -48,8 +49,9 @@ if(!$_SESSION['username'])
       <hr>
 
       <div class="span-24 ">
-        this is place for status messages
+        
       </div>
+		<hr>
       <br />
 	  <br />
 

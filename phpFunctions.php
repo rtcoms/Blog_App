@@ -1,7 +1,7 @@
 <?php
 
 $db = '';
-$errorMessage='';
+
 function connectToDatabase()
 {
 	try {
@@ -39,6 +39,7 @@ function checkUsername($uname)
 //////////////////////////////////////////////////////////////////////////////////////////////////
 function checkUsernameAndPassword($uname, $pword)
 {
+	global $statusMessage;
 	$db=connectToDatabase();
 	$query = "SELECT COUNT(*) FROM users WHERE username = '$uname' and password = '$pword'";
 	$result1 = $db->query($query)->fetch();
@@ -83,7 +84,7 @@ function createNewUser($newuname, $newpword)
 		$query = "INSERT INTO users VALUES ('$newuname', '$newpword')";
 		$db->query($query);    
 		$db=disconnectToDatabase();
-		$errorMessage='You are successfully registered to phpBlog';
+		
 		
 };
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -209,7 +210,7 @@ function checkSessionExist()
 {
 	session_start();
 
-	if(!$_SESSION['username'])
+	if(!isset($_SESSION['username']))
 	{
 		redirect('index.php');
 	}

@@ -1,3 +1,23 @@
+<?php
+	
+	if(isset($_SESSION['username']))
+	{
+		session_register($userParam);
+		
+	}
+	
+	session_start();
+	
+	if($_GET['uname1'] != '')
+	{
+		$_SESSION['statusmessage'] = "You are logged out successfully";
+		
+	}
+	else
+	{
+		$_SESSION['statusmessage'] = 'Welcome to phpBlog application';
+	}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -33,10 +53,16 @@
     <div class="container">
       <h1>My phpBlog.</h1>
       <h2 class="alt">This is a blog created in PHP/SQLite3.</h2>
-      <hr>
+      
 
       <div class="span-24 ">
-        this is place for status messages
+		<hr>
+        <div class="error">
+			<?php
+				echo $_SESSION['statusmessage'];
+			?>
+		</div>
+		<hr>
       </div>
       <br />
 	  <br />
@@ -52,7 +78,7 @@
 				}
 				echo "<br />";
 				echo '<a href="signup.php">'.'Sign up'.'</a>';
-				echo  $errorMessage;
+				
 			?>
 	   </div>
 	

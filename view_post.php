@@ -24,8 +24,10 @@
       <h2 class="alt">This is a blog created in PHP/SQLite3.</h2>
       <hr>
 
-      <div class="span-24 ">
-        this is place for status messages
+      <div class="span-24 error">
+        <?php
+        		echo $_SESSION['statusmessage'];
+        ?>
       </div>
       <br />
 	  <br />

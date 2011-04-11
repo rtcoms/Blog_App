@@ -1,6 +1,6 @@
 <?php
+	session_start();
 	include ("phpFunctions.php");
-	checkSessionExist();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
@@ -25,7 +25,11 @@
       <hr>
 
       <div class="span-24 ">
-        this is place for status messages
+		<div class="error">
+        <?php
+        	echo $_SESSION['statusmessage'];
+        ?>
+		</div>
       </div>
 	
       <hr>

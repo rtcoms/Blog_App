@@ -3,9 +3,10 @@
 
 	session_start();
 	
-	if(!$_SESSION['username'])
+	if(!isset($_SESSION['username']))
 	{
 		redirect("index.php");
+		$_SESSION['statusmessage'] = "Please login to create post.";
 	}
 	else
 	{
@@ -18,11 +19,13 @@
 		
 if(checkEmptyAndNullString($postTitle) || checkEmptyAndNullString($postContent) || checkEmptyAndNullString($postCategory) )
 		{
-			redirect("createpost_form.php");	
+			$_SESSION['statusmessage'] = "All fields are required to create a post"; 
+			redirect("createpost_form.php");
 		}
 		else
 		{
 			createPost($postTitle, $postContent, $postCategory, $postAuthor);
+			$_SESSION['statusmessage'] = "Post created successfully"; 
 			redirect("main.php");	
 		}
 	}
