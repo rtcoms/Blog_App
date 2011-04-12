@@ -13,7 +13,11 @@
 		$_SESSION['statusmessage'] = "You are logged out successfully";
 		
 	}
-	else
+	else if($_SESSION['login?'] == 0)
+	{
+		$_SESSION['statusmessage'] = 'Invalid Username or password';
+	}
+	else 
 	{
 		$_SESSION['statusmessage'] = 'Welcome to phpBlog application';
 	}

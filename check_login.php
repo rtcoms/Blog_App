@@ -10,7 +10,8 @@ if($result == 0) //no user exist
 {
 	
 	//redirect to login page
-	$_SESSION['statusmessage'] = "Username or password not valid";
+	
+	$_SESSION['login?'] = 0;
 	redirect('index.php');
 	
 }
@@ -20,6 +21,7 @@ else //user exist
 		$_SESSION['password'] = $_POST["password"];	
 		//redirect to main page
 		$_SESSION['statusmessage'] = "Logged in successfully";
+		$_SESSION['login?'] = 0;
 		redirect('main.php');
 	}
 
