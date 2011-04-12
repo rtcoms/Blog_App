@@ -1,0 +1,34 @@
+var name = document.getElementById(\'name\').value;
+var email = document.getElementById(\'email\').value;
+var pword = document.getElementById(\'password\').value;
+var confword = document.getElementById(\'confpassword\').value;
+
+if(name == \'\')
+{
+	alert("name should not be blank");
+	return flase;
+}
+
+
+var emailPattern=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;	
+
+if(trim(document.getElementById('loginid').value) == ''|| document.getElementById('loginid').value=="")
+{
+	alert('Login Id can\'t be empty');
+	return false;
+}
+else if(trim(document.getElementById('email').value) == ''|| document.getElementById('email').value == "")
+{
+	alert('Email can\'t be empty');
+	return false;
+}		
+else if(!emailPattern.test(trim(document.getElementById('email').value)))
+{
+	alert("Email address not valid");
+	return false;
+}
+
+else if(!emailPattern.test(trim(email))
+{
+	alert("email id is not valid");
+}
